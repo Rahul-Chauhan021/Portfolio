@@ -92,11 +92,12 @@ const Hero = () => {
                         </a>
 
                         <a
-                            href={`https://mail.google.com/mail/?view=cm&to=${profileData.email}`}
+                            href={`mailto:${profileData.email}?subject=Hello&body=Hi there`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border-2 border-orange-200 flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-300 hover:scale-110"
                         >
+                        
                             <Mail size={18} />
                         </a>
                     </div>
