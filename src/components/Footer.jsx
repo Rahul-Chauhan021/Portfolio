@@ -52,7 +52,7 @@ const Footer = () => {
                                     <Linkedin size={18} />
                                 </a>
                                 <a
-                                    href={`https://mail.google.com/mail/?view=cm&to=${profileData.email}`}
+                                    href={`mailto:${profileData.email}?subject=Hello&body=Hi there`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors duration-300"

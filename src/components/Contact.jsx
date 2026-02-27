@@ -23,21 +23,19 @@ const Contact = () => {
         }));
     };
 
-    // Updated handleSubmit to open Gmail in a new tab
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const mailtoLink = `https://mail.google.com/mail/?view=cm&to=${profileData.email}&subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
-        
-        // Open Gmail in a new tab
-        window.open(mailtoLink, '_blank');
+        // Use mailto: for all email sending
+        const mailtoLink = `mailto:${profileData.email}?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
+
+        window.location.href = mailtoLink; // opens default mail client
 
         toast({
             title: "Message Ready to Send!",
-            description: "Gmail will open in a new tab with your message pre-filled.",
+            description: "Your default email client will open with the message pre-filled.",
         });
 
-        // Reset form
         setFormData({
             name: '',
             email: '',
@@ -51,7 +49,7 @@ const Contact = () => {
             icon: Mail,
             title: 'Email',
             value: profileData.email,
-            link: `https://mail.google.com/mail/?view=cm&to=${profileData.email}`
+            link: `mailto:${profileData.email}` // fixed here
         },
         {
             icon: Phone,
@@ -71,7 +69,6 @@ const Contact = () => {
         <section id="contact" className="py-20 bg-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
-                    {/* Section Header */}
                     <div className="text-center mb-16">
                         <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
                             Get In <span className="text-orange-500">Touch</span>
@@ -99,7 +96,7 @@ const Contact = () => {
                                                         <h4 className="font-semibold text-gray-900">{info.title}</h4>
                                                         {info.link ? (
                                                             <a
-                                                                href={info.link}
+                                                                href={info.link} // mailto or tel
                                                                 target="_blank"
                                                                 rel="noopener noreferrer"
                                                                 className="text-orange-500 hover:text-orange-600 transition-colors duration-300 break-all"
@@ -138,9 +135,7 @@ const Contact = () => {
                                         <Linkedin size={24} />
                                     </a>
                                     <a
-                                        href={`https://mail.google.com/mail/?view=cm&to=${profileData.email}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        href={`mailto:${profileData.email}`} // fixed here
                                         className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white transition-all duration-300 hover:scale-110"
                                     >
                                         <Mail size={24} />
